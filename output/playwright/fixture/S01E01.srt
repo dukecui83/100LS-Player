@@ -1,0 +1,19 @@
+1
+00:00:00,500 --> 00:00:03,000
+Welcome to EchoLine.
+欢迎使用 EchoLine。
+
+2
+00:00:03,100 --> 00:00:06,000
+Listen carefully and repeat this sentence.
+仔细听并跟读这句话。
+
+3
+00:00:06,100 --> 00:00:09,000
+Practice a little every day.
+每天练习一点。
+
+4
+00:00:09,100 --> 00:00:12,000
+It seemed those apples were fresh.
+那些苹果看起来很新鲜。

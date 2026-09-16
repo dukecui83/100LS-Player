@@ -1,0 +1,101 @@
+- generic [ref=f3e2]:
+  - banner [ref=f3e3]:
+    - generic [ref=f3e8]:
+      - heading "EchoLine" [level=1] [ref=f3e9]
+      - paragraph [ref=f3e10]: 字幕跟读播放器
+    - generic [ref=f3e11]:
+      - generic [ref=f3e35]: fixture · 1 集
+      - generic "本次学习 00:00:01 · 今日累计 00:01:17 · 记录仅保存在本机" [ref=f3e38]:
+        - generic [ref=f3e16]:
+          - generic [ref=f3e17]: 本次学习
+          - strong [ref=f3e18]: 00:00:01
+        - generic [ref=f3e20]:
+          - generic [ref=f3e21]: 今日累计
+          - strong [ref=f3e22]: 00:01:17
+  - main [ref=f3e23]:
+    - generic [ref=f3e39]:
+      - generic [ref=f3e40]:
+        - generic [ref=f3e41]:
+          - generic [ref=f3e42]: 正在学习
+          - combobox "选择视频" [ref=f3e44] [cursor=pointer]:
+            - option "S01E01" [selected]
+        - group "播放模式" [ref=f3e45]:
+          - button "▶ 连续播放" [ref=f3e46] [cursor=pointer]
+          - button "↻ 逐句跟读" [ref=f3e47] [cursor=pointer]
+          - button "⌨ 听写" [ref=f3e48] [cursor=pointer]
+        - generic [ref=f3e49] [cursor=pointer]:
+          - generic [ref=f3e50]: 视频字幕
+          - checkbox "视频字幕" [checked]
+      - generic [ref=f3e52]:
+        - region "视频播放器" [ref=f3e53]:
+          - generic [ref=f3e54]:
+            - generic [ref=f3e56]: "错误 4：PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed"
+            - button "播放" [ref=f3e59] [cursor=pointer]
+          - generic [ref=f3e62]:
+            - button "播放或暂停" [ref=f3e63] [cursor=pointer]
+            - generic [ref=f3e66]:
+              - generic [ref=f3e67]: 00:00
+              - generic [ref=f3e68]: /
+              - generic [ref=f3e69]: 00:00
+            - slider "播放进度" [ref=f3e70] [cursor=pointer]: "0"
+            - button "静音" [ref=f3e71] [cursor=pointer]
+            - combobox "播放速度" [ref=f3e75] [cursor=pointer]:
+              - option "0.75×"
+              - option "1.0×" [selected]
+              - option "1.25×"
+              - option "1.5×"
+              - option "2.0×"
+            - button "全屏" [ref=f3e76] [cursor=pointer]
+          - generic [ref=f3e79]:
+            - generic [ref=f3e80]:
+              - generic [ref=f3e81]: Space
+              - text: 当前句播放 / 暂停
+            - generic [ref=f3e82]:
+              - generic [ref=f3e83]: ↑
+              - text: 上一句
+            - generic [ref=f3e84]:
+              - generic [ref=f3e85]: ↓
+              - text: 下一句
+            - generic [ref=f3e86]:
+              - generic [ref=f3e87]: S
+              - text: 显示 / 隐藏字幕
+            - generic [ref=f3e88]:
+              - generic [ref=f3e89]: Enter
+              - text: 检查听写
+        - complementary "字幕列表" [ref=f3e90]:
+          - generic [ref=f3e91]:
+            - generic [ref=f3e92]:
+              - text: TRANSCRIPT
+              - heading "字幕列表" [level=2] [ref=f3e93]
+            - generic [ref=f3e94]: 3 句
+          - group "字幕轨道" [ref=f3e95]:
+            - button "中英双语" [ref=f3e96] [cursor=pointer]
+          - generic [ref=f3e97]:
+            - button "00:00 Welcome to EchoLine. 欢迎使用 EchoLine。" [ref=f3e98] [cursor=pointer]:
+              - generic [ref=f3e99]:
+                - generic [ref=f3e100]: "01"
+                - generic [ref=f3e101]: 00:00
+              - generic [ref=f3e102]:
+                - generic [ref=f3e103]: Welcome to EchoLine.
+                - generic [ref=f3e104]: 欢迎使用 EchoLine。
+              - generic [aria-hidden] [ref=f3e105]: ▶
+            - button "00:03 Listen carefully and repeat this sentence. 仔细听并跟读这句话。" [ref=f3e106] [cursor=pointer]:
+              - generic [ref=f3e107]:
+                - generic [ref=f3e108]: "02"
+                - generic [ref=f3e109]: 00:03
+              - generic [ref=f3e110]:
+                - generic [ref=f3e111]: Listen carefully and repeat this sentence.
+                - generic [ref=f3e112]: 仔细听并跟读这句话。
+              - generic [aria-hidden] [ref=f3e113]: ▶
+            - button "00:06 Practice a little every day. 每天练习一点。" [ref=f3e114] [cursor=pointer]:
+              - generic [ref=f3e115]:
+                - generic [ref=f3e116]: "03"
+                - generic [ref=f3e117]: 00:06
+              - generic [ref=f3e118]:
+                - generic [ref=f3e119]: Practice a little every day.
+                - generic [ref=f3e120]: 每天练习一点。
+              - generic [aria-hidden] [ref=f3e121]: ▶
+          - generic [ref=f3e122]:
+            - generic [ref=f3e123]: 尚未开始
+            - button "回到当前句" [ref=f3e124] [cursor=pointer]
+  - status: "视频播放失败（错误 4：PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed）"

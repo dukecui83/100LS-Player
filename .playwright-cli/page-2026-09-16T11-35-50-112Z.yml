@@ -1,0 +1,111 @@
+- generic [ref=f4e2]:
+  - banner [ref=f4e3]:
+    - heading "EchoLine" [level=1] [ref=f4e9]
+    - generic "本次学习 00:00:47 · 今日累计 00:03:48 · 记录仅保存在本机" [ref=f4e126]:
+      - generic [ref=f4e16]:
+        - generic [ref=f4e17]: 本次学习
+        - strong [ref=f4e18]: 00:00:47
+  - main [ref=f4e23]:
+    - generic [ref=f4e39]:
+      - generic [ref=f4e40]:
+        - combobox "选择视频" [ref=f4e44] [cursor=pointer]:
+          - option "S01E01" [selected]
+        - group "播放模式" [ref=f4e45]:
+          - button "▶ 连续播放" [ref=f4e46] [cursor=pointer]
+          - button "↻ 逐句跟读" [ref=f4e47] [cursor=pointer]
+          - button "⌨ 听写" [active] [ref=f4e48] [cursor=pointer]
+        - generic [ref=f4e49]:
+          - generic [ref=f4e50]: 视频字幕
+          - checkbox "视频字幕" [checked] [disabled]
+      - generic [ref=f4e52]:
+        - region "视频播放器" [ref=f4e53]:
+          - generic [ref=f4e54]:
+            - generic [ref=f4e56]: "错误 4：PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed"
+            - button "播放" [ref=f4e59] [cursor=pointer]
+          - generic [ref=f4e62]:
+            - button "播放或暂停" [ref=f4e63] [cursor=pointer]
+            - generic [ref=f4e66]:
+              - generic [ref=f4e67]: 00:00
+              - generic [ref=f4e68]: /
+              - generic [ref=f4e69]: 00:00
+            - slider "播放进度" [ref=f4e70] [cursor=pointer]: "0"
+            - button "静音" [ref=f4e71] [cursor=pointer]
+            - combobox "播放速度" [ref=f4e75] [cursor=pointer]:
+              - option "0.75×"
+              - option "1.0×" [selected]
+              - option "1.25×"
+              - option "1.5×"
+              - option "2.0×"
+            - button "全屏" [ref=f4e76] [cursor=pointer]
+          - region "听写输入" [ref=f4e127]:
+            - generic [ref=f4e128]:
+              - generic [ref=f4e129]:
+                - generic [ref=f4e130]: DICTATION
+                - strong [ref=f4e131]: 播放本句，句尾会自动暂停
+              - generic [ref=f4e132]: 共 4 个单词
+            - generic [ref=f4e133]:
+              - textbox "第 1 个单词" [ref=f4e134]:
+                - /placeholder: "1"
+              - textbox "第 2 个单词" [ref=f4e135]:
+                - /placeholder: "2"
+              - textbox "第 3 个单词" [ref=f4e136]:
+                - /placeholder: "3"
+              - textbox "第 4 个单词" [ref=f4e137]:
+                - /placeholder: "4"
+            - generic [ref=f4e138]:
+              - button "↻ 重播本句" [ref=f4e139] [cursor=pointer]
+              - button "检查" [ref=f4e140] [cursor=pointer]
+              - button "下一句 ↓" [ref=f4e141] [cursor=pointer]
+          - generic [ref=f4e79]:
+            - generic [ref=f4e80]:
+              - generic [ref=f4e81]: Space
+              - text: 当前句播放 / 暂停
+            - generic [ref=f4e82]:
+              - generic [ref=f4e83]: ↑
+              - text: 上一句
+            - generic [ref=f4e84]:
+              - generic [ref=f4e85]: ↓
+              - text: 下一句
+            - generic [ref=f4e86]:
+              - generic [ref=f4e87]: S
+              - text: 显示 / 隐藏字幕
+            - generic [ref=f4e88]:
+              - generic [ref=f4e89]: Enter
+              - text: 检查听写
+        - complementary "字幕列表" [ref=f4e90]:
+          - generic [ref=f4e91]:
+            - generic [ref=f4e92]:
+              - text: TRANSCRIPT
+              - heading "字幕列表" [level=2] [ref=f4e93]
+            - generic [ref=f4e94]: 3 句
+          - group "字幕轨道" [ref=f4e95]:
+            - button "中英双语" [ref=f4e96] [cursor=pointer]
+          - generic [ref=f4e97]:
+            - button "00:00 Welcome to EchoLine. 欢迎使用 EchoLine。" [ref=f4e98] [cursor=pointer]:
+              - generic [ref=f4e99]:
+                - generic [ref=f4e100]: "01"
+                - generic [ref=f4e101]: 00:00
+              - generic [ref=f4e102]:
+                - generic [ref=f4e103]: Welcome to EchoLine. ••••••••
+                - generic [ref=f4e104]: 欢迎使用 EchoLine。 ••••••••
+              - generic [aria-hidden] [ref=f4e105]: ▶
+            - button "00:03 Listen carefully and repeat this sentence. 仔细听并跟读这句话。" [ref=f4e106] [cursor=pointer]:
+              - generic [ref=f4e107]:
+                - generic [ref=f4e108]: "02"
+                - generic [ref=f4e109]: 00:03
+              - generic [ref=f4e110]:
+                - generic [ref=f4e111]: Listen carefully and repeat this sentence. ••••••••
+                - generic [ref=f4e112]: 仔细听并跟读这句话。 ••••••••
+              - generic [aria-hidden] [ref=f4e113]: ▶
+            - button "00:06 Practice a little every day. 每天练习一点。" [ref=f4e114] [cursor=pointer]:
+              - generic [ref=f4e115]:
+                - generic [ref=f4e116]: "03"
+                - generic [ref=f4e117]: 00:06
+              - generic [ref=f4e118]:
+                - generic [ref=f4e119]: Practice a little every day. ••••••••
+                - generic [ref=f4e120]: 每天练习一点。 ••••••••
+              - generic [aria-hidden] [ref=f4e121]: ▶
+          - generic [ref=f4e122]:
+            - generic [ref=f4e123]: 尚未开始
+            - button "回到当前句" [ref=f4e124] [cursor=pointer]
+  - status: 已切换到听写模式，字幕答案已隐藏

@@ -1,0 +1,96 @@
+{
+  "name": "echo-line-player",
+  "version": "0.1.2",
+  "private": true,
+  "description": "A local video player for subtitle-guided listening and shadowing practice.",
+  "author": {
+    "name": "duke cui",
+    "email": "cuitongliang@gmail.com"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && cross-env VITE_DEV_SERVER_URL=http://127.0.0.1:5173 electron .\"",
+    "dev:web": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "icon:build": "node scripts/build-icon.cjs",
+    "dist:win": "npm run build && npm run icon:build && electron-builder --win --x64",
+    "pack:win": "npm run build && npm run icon:build && electron-builder --win dir --x64",
+    "preview:web": "vite preview --host 127.0.0.1",
+    "start": "electron .",
+    "dictionary:build": "node --max-old-space-size=2048 scripts/build-dictionary.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.0.0",
+    "electron": "^44.4.1",
+    "electron-builder": "^26.15.3",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.35.4",
+    "vite": "^7.1.7",
+    "wait-on": "^9.0.1"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.3.0"
+  },
+  "build": {
+    "appId": "com.100ls.shadowingplayer",
+    "productName": "100LS跟读播放器",
+    "copyright": "Copyright © 2026 duke cui",
+    "asar": true,
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "LICENSE",
+        "to": "LICENSE.txt"
+      },
+      {
+        "from": "THIRD_PARTY_NOTICES.md",
+        "to": "THIRD_PARTY_NOTICES.md"
+      }
+    ],
+    "asarUnpack": [
+      "node_modules/ffmpeg-static/**"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-${arch}-安装版.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "100LS跟读播放器"
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-${arch}-便携版.${ext}"
+    }
+  }
+}

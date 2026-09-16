@@ -1,0 +1,15 @@
+- generic [ref=f5e2]:
+  - banner [ref=f5e3]:
+    - heading "EchoLine" [level=1] [ref=f5e9]
+    - generic "本次学习 00:00:00 · 今日累计 00:00:00 · 记录仅保存在本机" [ref=f5e11]:
+      - generic [ref=f5e15]:
+        - generic [ref=f5e16]: 本次学习
+        - strong [ref=f5e17]: 00:00:00
+  - main [ref=f5e18]:
+    - generic [ref=f5e19]:
+      - generic [ref=f5e25]: LISTEN · REPEAT · SPEAK
+      - heading "从一段字幕开始练听力" [level=2] [ref=f5e26]
+      - paragraph [ref=f5e27]: 选择包含视频和 SRT 字幕的文件夹，播放器会自动匹配每一集的英文与双语字幕。
+      - button "选择视频文件夹" [ref=f5e28] [cursor=pointer]
+      - generic [ref=f5e29]: 支持 MKV、MP4、WebM、MOV 与 SRT · 也可以直接拖入视频或文件夹
+  - status

@@ -1,0 +1,160 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e8]:
+      - heading "EchoLine" [level=1] [ref=e9]
+      - paragraph [ref=e10]: 字幕跟读播放器
+    - generic [ref=e11]:
+      - generic [ref=e35]: fixture · 1 集
+      - generic "本次学习 00:00:54 · 今日累计 00:00:54 · 记录仅保存在本机" [ref=e186]:
+        - generic [ref=e16]:
+          - generic [ref=e17]: 本次学习
+          - strong [ref=e18]: 00:00:54
+        - generic [ref=e20]:
+          - generic [ref=e21]: 今日累计
+          - strong [ref=e22]: 00:00:54
+  - main [ref=e23]:
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - generic [ref=e41]: 正在学习
+          - combobox "选择视频" [ref=e43] [cursor=pointer]:
+            - option "S01E01" [selected]
+        - group "播放模式" [ref=e44]:
+          - button "▶ 连续播放" [ref=e45] [cursor=pointer]
+          - button "↻ 逐句跟读" [ref=e46] [cursor=pointer]
+          - button "⌨ 听写" [ref=e47] [cursor=pointer]
+        - generic [ref=e48] [cursor=pointer]:
+          - generic [ref=e49]: 视频字幕
+          - checkbox "视频字幕" [checked]
+      - generic [ref=e51]:
+        - region "视频播放器" [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e55]: "错误 4：PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed"
+            - button "播放" [ref=e58] [cursor=pointer]
+          - generic [ref=e61]:
+            - button "播放或暂停" [ref=e62] [cursor=pointer]
+            - generic [ref=e65]:
+              - generic [ref=e66]: 00:00
+              - generic [ref=e67]: /
+              - generic [ref=e68]: 00:00
+            - slider "播放进度" [ref=e69] [cursor=pointer]: "0"
+            - button "静音" [ref=e70] [cursor=pointer]
+            - slider "音量" [ref=e73] [cursor=pointer]: "1"
+            - combobox "播放速度" [ref=e75] [cursor=pointer]:
+              - option "0.75×"
+              - option "1.0×" [selected]
+              - option "1.25×"
+              - option "1.5×"
+              - option "2.0×"
+            - button "全屏" [ref=e76] [cursor=pointer]
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]: Space
+              - text: 当前句播放 / 暂停
+            - generic [ref=e82]:
+              - generic [ref=e83]: ↑
+              - text: 上一句
+            - generic [ref=e84]:
+              - generic [ref=e85]: ↓
+              - text: 下一句
+            - generic [ref=e86]:
+              - generic [ref=e87]: S
+              - text: 显示 / 隐藏字幕
+            - generic [ref=e88]:
+              - generic [ref=e89]: Enter
+              - text: 检查听写
+        - complementary "字幕列表" [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - text: TRANSCRIPT
+              - heading "字幕列表" [level=2] [ref=e93]
+            - generic [ref=e94]: 4 句
+          - group "字幕轨道" [ref=e95]:
+            - button "中英双语" [ref=e96] [cursor=pointer]
+          - generic [ref=e97]:
+            - button "00:00 Welcome to EchoLine. 欢迎使用 EchoLine。" [ref=e98] [cursor=pointer]:
+              - generic [ref=e99]:
+                - generic [ref=e100]: "01"
+                - generic [ref=e101]: 00:00
+              - generic [ref=e102]:
+                - generic [ref=e103]:
+                  - button "Welcome" [ref=e104]
+                  - button "to" [ref=e105]
+                  - button "EchoLine" [ref=e106]
+                  - text: .
+                - generic [ref=e107]:
+                  - text: 欢迎使用
+                  - button "EchoLine" [ref=e108]
+                  - text: 。
+              - generic [aria-hidden] [ref=e109]: ▶
+            - button "00:03 Listen carefully and repeat this sentence. 仔细听并跟读这句话。" [ref=e110] [cursor=pointer]:
+              - generic [ref=e111]:
+                - generic [ref=e112]: "02"
+                - generic [ref=e113]: 00:03
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - button "Listen" [ref=e116]
+                  - button "carefully" [ref=e117]
+                  - button "and" [ref=e118]
+                  - button "repeat" [ref=e119]
+                  - button "this" [ref=e120]
+                  - button "sentence" [ref=e121]
+                  - text: .
+                - generic [ref=e122]: 仔细听并跟读这句话。
+              - generic [aria-hidden] [ref=e123]: ▶
+            - button "00:06 Practice a little every day. 每天练习一点。" [ref=e124] [cursor=pointer]:
+              - generic [ref=e125]:
+                - generic [ref=e126]: "03"
+                - generic [ref=e127]: 00:06
+              - generic [ref=e128]:
+                - generic [ref=e129]:
+                  - button "Practice" [ref=e130]
+                  - button "a" [ref=e131]
+                  - button "little" [ref=e132]
+                  - button "every" [ref=e133]
+                  - button "day" [ref=e134]
+                  - text: .
+                - generic [ref=e135]: 每天练习一点。
+              - generic [aria-hidden] [ref=e136]: ▶
+            - button "00:09 It seemed those apples were fresh. 那些苹果看起来很新鲜。" [ref=e137] [cursor=pointer]:
+              - generic [ref=e138]:
+                - generic [ref=e139]: "04"
+                - generic [ref=e140]: 00:09
+              - generic [ref=e141]:
+                - generic [ref=e142]:
+                  - button "It" [ref=e143]
+                  - button "seemed" [ref=e144]
+                  - button "those" [ref=e145]
+                  - button "apples" [ref=e146]
+                  - button "were" [ref=e147]
+                  - button "fresh" [ref=e148]
+                  - text: .
+                - generic [ref=e149]: 那些苹果看起来很新鲜。
+              - generic [aria-hidden] [ref=e150]: ▶
+          - generic [ref=e151]:
+            - generic [ref=e152]: 尚未开始
+            - button "回到当前句" [ref=e153] [cursor=pointer]
+  - dialog [ref=e157]:
+    - banner [ref=e158]:
+      - generic [ref=e159]:
+        - text: DICTIONARY
+        - heading "查词" [level=2] [ref=e160]
+      - button "关闭查词窗口" [ref=e161] [cursor=pointer]: ×
+    - generic [ref=e162]:
+      - generic [ref=e163]:
+        - generic [ref=e164]:
+          - heading "apples" [level=3] [ref=e181]
+          - generic [ref=e166]: 原形 apple /'æpl/
+        - generic "单词发音" [ref=e167]:
+          - button "🔊 英音" [ref=e168] [cursor=pointer]
+          - button "🔊 美音" [active] [ref=e169] [cursor=pointer]
+      - generic [ref=e170]:
+        - strong [ref=e182]: apples
+        - text: 是 apple 的复数
+      - list [ref=e172]:
+        - listitem [ref=e183]: n. 苹果, 家伙
+        - listitem [ref=e184]: "[医] 苹果"
+    - contentinfo [ref=e174]:
+      - generic [ref=e175]: 本地释义来自 ECDICT
+      - button "在有道查看完整释义 ↗" [ref=e176] [cursor=pointer]
+  - status: "视频播放失败（错误 4：PipelineStatus::DEMUXER_ERROR_COULD_NOT_OPEN: FFmpegDemuxer: open context failed）"

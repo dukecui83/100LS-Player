@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self' study-media: blob: https://dict.youdao.com; connect-src 'self' http://127.0.0.1:5173 ws://127.0.0.1:5173; font-src 'self' data:;" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles.css" />
+    <title>100LS跟读播放器</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="desktop-titlebar" id="desktopTitlebar">
+        <div class="titlebar-identity" aria-label="100LS跟读播放器">
+          <img src="./favicon.svg" alt="" />
+          <span>100LS跟读播放器</span>
+        </div>
+
+        <nav class="titlebar-menu" aria-label="应用菜单">
+          <div class="titlebar-menu-group">
+            <button class="titlebar-menu-trigger" type="button" aria-expanded="false" aria-controls="titlebarFileMenu" data-title-menu="file">文件</button>
+            <div class="titlebar-menu-popover" id="titlebarFileMenu" role="menu" data-title-popover="file" hidden>
+              <button type="button" role="menuitem" data-title-command="open-video"><span>打开视频…</span><kbd>Ctrl+O</kbd></button>
+              <button type="button" role="menuitem" data-title-command="open-folder"><span>打开视频文件夹…</span><kbd>Ctrl+Shift+O</kbd></button>
+              <div class="titlebar-menu-submenu">
+                <button id="recentMenuTrigger" type="button" role="menuitem" aria-haspopup="menu" aria-expanded="false" aria-controls="recentMenuPopover"><span>最近打开</span><kbd aria-hidden="true">›</kbd></button>
+                <div class="titlebar-menu-popover titlebar-menu-nested" id="recentMenuPopover" role="menu" hidden>
+                  <button type="button" role="menuitem" disabled><span>暂无最近打开记录</span></button>
+                </div>
+              </div>
+              <div class="titlebar-menu-separator" role="separator"></div>
+              <button type="button" role="menuitem" data-title-command="quit"><span>退出</span></button>
+            </div>
+          </div>
+
+          <div class="titlebar-menu-group">
+            <button class="titlebar-menu-trigger" type="button" aria-expanded="false" aria-controls="titlebarViewMenu" data-title-menu="view">视图</button>
+            <div class="titlebar-menu-popover" id="titlebarViewMenu" role="menu" data-title-popover="view" hidden>
+              <button id="bilingualSubtitleMenuItem" type="button" role="menuitemcheckbox" aria-checked="false" data-title-command="toggle-bilingual" disabled><span>显示双语字幕</span><kbd>Ctrl+B</kbd></button>
+              <button id="transcriptPanelMenuItem" type="button" role="menuitemcheckbox" aria-checked="true" data-title-command="toggle-transcript-panel"><span>显示字幕列表</span><kbd>Ctrl+Shift+L</kbd></button>
+              <div class="titlebar-menu-separator" role="separator"></div>
+              <button id="windowFullscreenMenuItem" type="button" role="menuitemcheckbox" aria-checked="false" data-title-command="window-fullscreen"><span>全屏窗口</span><kbd>F11</kbd></button>
+              <button type="button" role="menuitem" data-title-command="video-fullscreen"><span>视频全屏</span><kbd>Ctrl+Enter</kbd></button>
+            </div>
+          </div>
+
+          <div class="titlebar-menu-group">
+            <button class="titlebar-menu-trigger" type="button" aria-expanded="false" aria-controls="titlebarHelpMenu" data-title-menu="help">帮助</button>
+            <div class="titlebar-menu-popover" id="titlebarHelpMenu" role="menu" data-title-popover="help" hidden>
+              <button type="button" role="menuitem" data-title-command="about"><span>关于 100LS跟读播放器</span></button>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img">
+              <path d="M7 9.5v13M12 6v20M17 11v10M22 4v24M27 9.5v13" />
+            </svg>
+          </div>
+          <div>
+            <h1>100LS</h1>
+            <p>跟读播放器</p>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="library-summary" id="librarySummary" hidden>
+            <span class="status-dot"></span>
+            <span id="libraryName">未选择文件夹</span>
+          </div>
+          <div class="study-timer" id="studyTimer" title="学习时间只保存在本机">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" /><path d="M12 7.5V12l3 2" /></svg>
+            <div class="study-time-block">
+              <span>本次学习</span>
+              <strong id="sessionStudyTime">00:00:00</strong>
+            </div>
+            <div class="study-time-divider"></div>
+            <div class="study-time-block compact">
+              <span>今日累计</span>
+              <strong id="todayStudyTime">00:00:00</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="empty-state" id="emptyState">
+          <div class="empty-illustration" aria-hidden="true">
+            <div class="play-orbit"><span></span></div>
+            <div class="caption-line caption-line-one"></div>
+            <div class="caption-line caption-line-two"></div>
+          </div>
+          <span class="eyebrow">LISTEN · REPEAT · SPEAK</span>
+          <h2>从一段字幕开始练听力</h2>
+          <p>选择包含视频和 SRT 字幕的文件夹，播放器会自动匹配每一集的英文与双语字幕。</p>
+          <button class="button primary large" id="emptyOpenButton" type="button">选择视频文件夹</button>
+          <div class="format-hint">支持 MKV、MP4、WebM、MOV 与 SRT · 也可以直接拖入视频或文件夹</div>
+        </section>
+
+        <section class="workspace" id="workspace" hidden>
+          <div class="workspace-toolbar">
+            <div class="episode-control">
+              <label for="episodeSelect">正在学习</label>
+              <div class="select-wrap wide">
+                <select id="episodeSelect" aria-label="选择视频"></select>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4" /></svg>
+              </div>
+            </div>
+
+            <div class="mode-switch" role="group" aria-label="播放模式">
+              <button class="mode-button active" type="button" data-mode="continuous">
+                <span class="mode-icon">▶</span>
+                连续播放
+              </button>
+              <button class="mode-button" type="button" data-mode="practice">
+                <span class="mode-icon">↻</span>
+                逐句跟读
+              </button>
+              <button class="mode-button" type="button" data-mode="dictation">
+                <span class="mode-icon">⌨</span>
+                听写
+              </button>
+            </div>
+
+            <div class="toolbar-spacer"></div>
+          </div>
+
+          <div class="learning-layout" id="learningLayout">
+            <section class="player-column" aria-label="视频播放器">
+              <div class="video-shell" id="videoShell">
+                <video id="video" preload="metadata"></video>
+                <div class="video-placeholder" id="videoPlaceholder">
+                  <div class="spinner"></div>
+                  <span>正在准备视频…</span>
+                </div>
+                <div class="subtitle-overlay" id="subtitleOverlay" aria-live="off"></div>
+                <div class="cue-repeat-badge" id="cueRepeatBadge" aria-live="polite" hidden>
+                  本句第 <strong id="cueRepeatCount">1</strong> 遍
+                </div>
+                <button class="center-play" id="centerPlay" type="button" aria-label="播放">
+                  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="m12 8 12 8-12 8V8Z" /></svg>
+                </button>
+                <div class="fullscreen-progress-control" aria-label="全屏播放进度">
+                  <span id="fullscreenCurrentTime">00:00</span>
+                  <input id="fullscreenProgress" type="range" min="0" max="1000" value="0" aria-label="全屏播放进度" />
+                  <span id="fullscreenDuration">00:00</span>
+                </div>
+              </div>
+
+              <div class="transport">
+                <button class="transport-button main-play" id="playButton" type="button" aria-label="播放或暂停">
+                  <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7V5Z" /></svg>
+                  <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM14 5h3v14h-3z" /></svg>
+                </button>
+                <div class="time-display"><span id="currentTime">00:00</span><span>/</span><span id="duration">00:00</span></div>
+                <input class="progress" id="progress" type="range" min="0" max="1000" value="0" aria-label="播放进度" />
+                <button class="transport-button" id="volumeButton" type="button" aria-label="静音">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4Zm12.5-.5a4 4 0 0 1 0 5M19 7a7 7 0 0 1 0 10" /></svg>
+                </button>
+                <input class="volume" id="volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="音量" />
+                <div class="select-wrap speed">
+                  <select id="speedSelect" aria-label="播放速度">
+                    <option value="0.75">0.75×</option>
+                    <option value="1" selected>1.0×</option>
+                    <option value="1.25">1.25×</option>
+                    <option value="1.5">1.5×</option>
+                    <option value="2">2.0×</option>
+                  </select>
+                  <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4" /></svg>
+                </div>
+                <label class="toggle-control transport-subtitle-toggle" for="overlayToggle" title="显示或隐藏视频字幕">
+                  <span>视频字幕</span>
+                  <input id="overlayToggle" type="checkbox" checked />
+                  <span class="toggle" aria-hidden="true"></span>
+                </label>
+                <button class="transport-button" id="fullscreenButton" type="button" aria-label="全屏">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M20 16v4h-4M8 20H4v-4" /></svg>
+                </button>
+              </div>
+
+              <div class="practice-status" id="practiceStatus" hidden>
+                <span class="practice-pulse"></span>
+                <span id="practiceStatusText">逐句模式：播放到本句结尾后自动暂停</span>
+                <button id="previousCueButton" type="button">上一句 <kbd>↑</kbd></button>
+                <button id="nextCueButton" type="button">下一句 <kbd>↓</kbd></button>
+              </div>
+
+              <section class="dictation-panel" id="dictationPanel" aria-label="听写输入" hidden>
+                <div class="dictation-heading">
+                  <div>
+                    <span class="eyebrow">DICTATION</span>
+                    <strong id="dictationPrompt">播放本句，句尾会自动暂停</strong>
+                  </div>
+                  <span id="dictationResult">逐词输入你听到的内容</span>
+                </div>
+                <div class="dictation-inputs" id="dictationInputs"></div>
+                <div class="dictation-actions">
+                  <button id="dictationReplayButton" type="button">↻ 重播本句</button>
+                  <button id="dictationCheckButton" type="button">检查</button>
+                  <button id="dictationNextButton" type="button">下一句 ↓</button>
+                </div>
+              </section>
+
+              <div class="shortcut-strip">
+                <span><kbd>Space</kbd> 当前句播放 / 暂停</span>
+                <span><kbd>↑</kbd> 上一句</span>
+                <span><kbd>↓</kbd> 下一句</span>
+                <span><kbd>S</kbd> 显示 / 隐藏字幕</span>
+                <span><kbd>Ctrl+B</kbd> 英语 / 双语</span>
+                <span><kbd>Enter</kbd> 检查听写</span>
+              </div>
+            </section>
+
+            <aside class="transcript-panel" id="transcriptPanel" aria-label="字幕列表">
+              <div class="transcript-header">
+                <div>
+                  <span class="eyebrow">TRANSCRIPT</span>
+                  <h2>字幕列表</h2>
+                </div>
+                <span class="cue-count" id="cueCount">0 句</span>
+              </div>
+
+              <div class="transcript-list" id="transcriptList" tabindex="0"></div>
+
+              <div class="transcript-footer">
+                <span id="currentCueLabel">尚未开始</span>
+                <button id="scrollToCurrentButton" type="button">回到当前句</button>
+              </div>
+            </aside>
+          </div>
+        </section>
+      </main>
+
+      <div class="about-backdrop" id="aboutBackdrop" hidden>
+        <section class="about-dialog" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" aria-describedby="aboutDescription">
+          <button class="about-close" id="aboutClose" type="button" aria-label="关闭关于窗口">×</button>
+          <img class="about-logo" src="./favicon.svg" alt="" />
+          <h2 id="aboutTitle">100LS跟读播放器</h2>
+          <p class="about-version" id="aboutVersion">版本信息加载中…</p>
+          <p class="about-description" id="aboutDescription">面向本地视频与 SRT 字幕的英语听力、逐句跟读和听写播放器。</p>
+
+          <dl class="about-details">
+            <div>
+              <dt>开发者</dt>
+              <dd>duke cui</dd>
+            </div>
+            <div>
+              <dt>联系邮箱</dt>
+              <dd><button class="about-email" id="aboutEmail" type="button">cuitongliang@gmail.com ↗</button></dd>
+            </div>
+            <div>
+              <dt>软件许可</dt>
+              <dd>PolyForm Noncommercial License 1.0.0</dd>
+            </div>
+          </dl>
+
+          <p class="about-license-note">源码允许用于个人学习及其他非商业用途；修改或分发时须保留作者声明和许可协议。任何商业使用均须事先取得作者的书面授权。</p>
+          <footer class="about-footer">
+            <span>Copyright © 2026 duke cui</span>
+            <button id="aboutConfirm" type="button">关闭</button>
+          </footer>
+        </section>
+      </div>
+
+      <div class="word-lookup-backdrop" id="wordLookupBackdrop" hidden>
+        <section class="word-lookup-dialog" role="dialog" aria-modal="true" aria-labelledby="wordLookupTitle">
+          <header class="word-lookup-header">
+            <div>
+              <span class="eyebrow">DICTIONARY</span>
+              <h2 id="wordLookupTitle">查词</h2>
+            </div>
+            <button class="word-lookup-close" id="wordLookupClose" type="button" aria-label="关闭查词窗口">×</button>
+          </header>
+
+          <div class="word-lookup-loading" id="wordLookupLoading">正在查询本地词典…</div>
+
+          <div class="word-lookup-content" id="wordLookupContent" hidden>
+            <div class="word-lookup-title-row">
+              <div>
+                <h3 id="wordLookupWord"></h3>
+                <div class="word-lookup-phonetic" id="wordLookupPhonetic"></div>
+              </div>
+              <div class="word-lookup-audio-actions" aria-label="单词发音">
+                <button type="button" data-pronunciation="1">🔊 英音</button>
+                <button type="button" data-pronunciation="2">🔊 美音</button>
+              </div>
+            </div>
+            <div class="word-lookup-form" id="wordLookupForm" hidden></div>
+            <ul class="word-lookup-meanings" id="wordLookupMeanings"></ul>
+            <div class="word-lookup-empty" id="wordLookupEmpty" hidden>本地词典暂未收录，可以前往有道查看。</div>
+          </div>
+
+          <footer class="word-lookup-footer">
+            <span>本地释义来自 ECDICT</span>
+            <button id="wordLookupMore" type="button">在有道查看完整释义 ↗</button>
+          </footer>
+        </section>
+      </div>
+
+      <audio id="wordAudio" preload="none" hidden></audio>
+
+      <div class="drop-overlay" id="dropOverlay" hidden>
+        <div class="drop-card">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" /></svg>
+          <strong>松开以打开</strong>
+          <span>视频、SRT 字幕或整个文件夹</span>
+        </div>
+      </div>
+
+      <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    </div>
+    <script type="module" src="/src/app.js"></script>
+  </body>
+</html>
